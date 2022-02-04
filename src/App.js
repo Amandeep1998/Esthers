@@ -1,22 +1,22 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Explore from "./components/Explore";
-import CreatePost from "./components/CreatePost";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import Header1 from "./components/Header1";
+import Footer1 from "./components/Footer1";
+
+import Home1 from "./components/Home1";
+
 import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <Header />
+      <Header1 />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create-post" element={<CreatePost />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/" element={<Home1 />} />
       </Routes>
-      <Footer />
+      <Footer1 />
     </>
   );
 };
