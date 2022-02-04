@@ -1,68 +1,88 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { X, FunnelSimple } from "phosphor-react";
+import { X, FunnelSimple, MagnifyingGlass } from "phosphor-react";
 import productData from "../data/productData";
-
 const SearchContainer = styled.div`
   width: 100%;
-  height: 7%;
+  height: 7vh;
   display: flex;
+  position: relative;
   justify-content: space-between;
   @media only screen and (max-width: 900px) {
-    width: 100%;
+    width: 90vw;
     height: 4vh;
   }
 `;
 
 const FilterButton = styled.button`
-  width: 10%;
-  height: 40px;
+  width: 160px;
+  height: 46px;
   margin: 2px;
   cursor: pointer;
-  background-color: #3a3a3a;
+  background: #3a3a3a 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
   color: #fff;
   border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   @media only screen and (max-width: 400px) {
     width: 20%;
     font-size: 10px;
-    margin: 1px;
+  }
+`;
+
+const SearchInputContainer = styled.div`
+  width: 1055px;
+  height: 46px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 2px;
+  opacity: 1;
+  margin: 0 5px;
+  display: flex;
+
+  align-items: center;
+  @media only screen and (max-width: 400px) {
+    width: 50%;
   }
 `;
 
 const SearchField = styled.input`
-  width: 70%;
-  height: 40px;
-  margin: 2px;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  border: none;
+
   padding: 2px;
-  @media only screen and (max-width: 400px) {
-    width: 50%;
-    margin: 1px;
-  }
 `;
 
 const SelectInput = styled.select`
-  width: 20%;
-  height: 40px;
-  margin: 2px;
+  width: 288px;
+  height: 46px;
+
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d1d5db;
+  border-radius: 2px;
+  opacity: 1;
   @media only screen and (max-width: 400px) {
     width: 25%;
-    margin: 1px;
   }
 `;
 
 const Categories = styled.div`
   width: 100%;
   height: 8vh;
+  text-align: left;
+  font: normal normal normal 14px/18px Strawford;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
   @media only screen and (max-width: 900px) {
-    width: 100%;
+    width: 90vw;
     height: 6vh;
   }
   @media only screen and (max-width: 400px) {
-    width: 100%;
-    height: 6vh;
+    width: 100vw;
+    height: 4vh;
     margin-top: 2px;
   }
 `;
@@ -70,23 +90,32 @@ const Categories = styled.div`
 const CategoriesContainer = styled.div`
   width: 100%;
   height: 7vh;
+  background-color: "green";
   display: flex;
   align-items: center;
   text-decoration: none;
   outline: none;
   overflow-x: scroll;
   transition: all 0.1s;
+  @media only screen and (max-width: 900px) {
+    width: 90vw;
+  }
 `;
 
 const Category = styled.button`
   margin: 5px 10px;
-  padding: 5px;
-  border-radius: 30%;
+  padding: 10px;
   white-space: nowrap;
-  background-color: #dce8d1;
-  border 1px solid #dce8d1;
+  border-radius: 999px;
+  background-color: #fff;
+  border: none;
+  text-align: left;
+  font: normal normal normal 14px/18px Strawford;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
   @media only screen and (max-width: 400px) {
-    font-size:10px;
+    font-size: 10px;
   }
 `;
 
@@ -94,24 +123,29 @@ const ProductsContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
-
+  @media only screen and (max-width: 900px) {
+    width: 90vw;
+  }
   @media only screen and (max-width: 400px) {
-    width: 100%;
+    width: 100vw;
   }
 `;
 
 const Product = styled.div`
-  width: 25%;
+  width: 170px;
   height: 250px;
-  padding: 2px;
+  
+  text-align: "left"
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 900px) {
-    width: 50%;
+    width: 240px;
+    margin: 2px;
   }
   @media only screen and (max-width: 400px) {
-    width: 90%;
+    width: 400px;
   }
 `;
 
@@ -122,24 +156,25 @@ const ProductCatalog = () => {
     <>
       <SearchContainer>
         <FilterButton
-          onClick={() => {
+          onClick={e => {
             setShowCategories(!showCategories);
           }}
         >
           {showCategories ? (
-            <X
-              style={{ position: "relative", top: 3, marginRight: "3px" }}
-              size={15}
-            />
+            <X style={{ position: "relative", marginRight: "5px" }} size={17} />
           ) : (
             <FunnelSimple
-              style={{ position: "relative", top: 3, marginRight: "3px" }}
-              size={15}
+              style={{ position: "relative", marginRight: "5px" }}
+              size={17}
             />
           )}
           Filter
         </FilterButton>
-        <SearchField placeholder="Search Products" />
+        <SearchInputContainer>
+          <SearchField placeholder="Search Products" />
+          <MagnifyingGlass size={28} />
+        </SearchInputContainer>
+
         <SelectInput>
           <option>Newest</option>
         </SelectInput>
@@ -147,7 +182,11 @@ const ProductCatalog = () => {
       <Categories>
         {showCategories ? (
           <CategoriesContainer>
-            <Category>All Categories</Category>
+            <Category
+              style={{ background: "#F2F4F4 0% 0% no-repeat padding-box" }}
+            >
+              All Categories
+            </Category>
             <Category>Living room</Category>
             <Category>Kitchen</Category>
             <Category>Bathroom</Category>
@@ -172,14 +211,18 @@ const ProductCatalog = () => {
               <img
                 style={{
                   width: "100%",
-                  height: "60%"
+                  height: "70%"
                 }}
                 src={prod.img}
                 alt="Some Image"
               />
-              <p style={{ height: "10px" }}>Brand name</p>
-              <p style={{ height: "10px" }}>{prod.name}</p>
-              <p style={{ color: "#2D5E54" }}>${prod.price}SEK</p>
+              <p style={{ height: "4px", color: "#3A3A3A", opacity: 0.7 }}>
+                Brand name
+              </p>
+              <p style={{ height: "4px", color: "3A3A3A" }}>{prod.name}</p>
+              <p style={{ color: "#23574C", height: "4px" }}>
+                ${prod.price}SEK
+              </p>
             </Product>
           );
         })}

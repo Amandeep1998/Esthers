@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Copyright } from "phosphor-react";
 
 const Footer = styled.div`
   width: 100vw;
   height: 7vh;
-  background-color: #2d5e54;
+  background: #23574c 0% 0% no-repeat padding-box;
   display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -21,7 +20,7 @@ const FooterContainer = styled.div`
     width: 90vw;
   }
   @media only screen and (max-width: 400px) {
-    width: 100vw;
+    width: 90vw;
     font-size: 10px;
     white-space: nowrap;
   }
@@ -51,10 +50,6 @@ const Link = styled.div`
   margin-right: 10px;
 `;
 
-const CopyRight = styled.div`
-  margin-left: 3px;
-`;
-
 const Footer1 = () => {
   return (
     <Footer>
@@ -65,14 +60,7 @@ const Footer1 = () => {
           <Link>Carrers</Link>
           <Link>Business enquries</Link>
         </LeftFooter>
-        <RightFooter>
-          <p style={{ position: "relative", top: 10 }}>
-            Esther's Scandnavia AB
-          </p>
-          <CopyRight>
-            <Copyright size={15} />
-          </CopyRight>
-        </RightFooter>
+        <RightFooter>Esther’s Scandinavia AB ©</RightFooter>
       </FooterContainer>
     </Footer>
   );

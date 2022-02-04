@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import productData from "../data/productData";
-import { Gear, X, FunnelSimple } from "phosphor-react";
+import productData from "../../data/productData.json";
+import { Gear, X, FunnelSimple, Plus, MagnifyingGlass } from "phosphor-react";
 import { Button, Modal } from "react-bootstrap";
-import ProductCatalog from "./ProductCatalog";
+import ProductCatalog from "../ProductCatalog";
 
 const Container = styled.div`
   width: 100vw;
-  height: 40vh;
-  padding-top: 100px;
+  height: 35vh;
+  padding-top: 60px;
   display: flex;
   justify-content: center;
   background-color: #f1e0cd;
@@ -20,6 +20,7 @@ const Container = styled.div`
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 80vw;
   background-color: #f1e0cd;
   @media only screen and (max-width: 900px) {
@@ -36,7 +37,7 @@ const LeftHeaderContainer = styled.div`
   width: 40vw;
   display: flex;
   @media only screen and (max-width: 400px) {
-    width: 45vw;
+    width: 60vw;
   }
 `;
 const RightHeaderContainer = styled.div`
@@ -45,23 +46,7 @@ const RightHeaderContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   @media only screen and (max-width: 400px) {
-    width: 45vw;
-  }
-`;
-
-const SettingsIcon = styled.div`
-  width: 25px;
-  height: 25px;
-  margin-left: 5px;
-  background-color: #f1e0cd;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  @media only screen and (max-width: 400px) {
-    width: 15px;
-    height: 15px;
+    width: 30vw;
   }
 `;
 
@@ -74,20 +59,25 @@ const HomeLinks = styled.div`
     width: 90vw;
   }
   @media only screen and (max-width: 400px) {
-    width: 90vw;
+    width: 100vw;
   }
 `;
 
 const Links = styled.div`
   margin: 10px;
   cursor: pointer;
-  color: #b4bfac;
+  text-align: left;
+  font: normal normal medium 16px/19px Strawford;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 0.5;
 `;
 
 const SearchContainer = styled.div`
   width: 80vw;
   height: 7vh;
   display: flex;
+  position: relative;
   justify-content: space-between;
   @media only screen and (max-width: 900px) {
     width: 90vw;
@@ -96,11 +86,13 @@ const SearchContainer = styled.div`
 `;
 
 const FilterButton = styled.button`
-  width: 10%;
-  height: 40px;
+  width: 112px;
+  height: 46px;
   margin: 2px;
   cursor: pointer;
-  background-color: #3a3a3a;
+  background: #3a3a3a 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
   color: #fff;
   border: none;
   @media only screen and (max-width: 400px) {
@@ -110,8 +102,8 @@ const FilterButton = styled.button`
 `;
 
 const AddProdButton = styled.button`
-  width: 100px;
-  height: 40px;
+  width: 150px;
+  height: 38px;
   margin: 2px;
   cursor: pointer;
   background-color: #2d5e54;
@@ -119,20 +111,38 @@ const AddProdButton = styled.button`
   border: none;
 `;
 
-const SearchField = styled.input`
-  width: 70%;
-  height: 40px;
-  margin: 2px;
-  padding: 2px;
+const SearchInputContainer = styled.div`
+  width: 1055px;
+  height: 46px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 2px;
+  opacity: 1;
+  margin: 0 5px;
+
+  display: flex;
+  align-items: center;
   @media only screen and (max-width: 400px) {
     width: 50%;
   }
 `;
 
+const SearchField = styled.input`
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 1;
+  margin: 0 5px;
+  padding-left: 5px;
+`;
+
 const SelectInput = styled.select`
-  width: 20%;
-  height: 40px;
-  margin: 2px;
+  width: 288px;
+  height: 46px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d1d5db;
+  border-radius: 2px;
+  opacity: 1;
   @media only screen and (max-width: 400px) {
     width: 25%;
   }
@@ -141,6 +151,11 @@ const SelectInput = styled.select`
 const Categories = styled.div`
   width: 80vw;
   height: 8vh;
+  text-align: left;
+  font: normal normal normal 14px/18px Strawford;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
   @media only screen and (max-width: 900px) {
     width: 90vw;
     height: 6vh;
@@ -155,7 +170,6 @@ const Categories = styled.div`
 const CategoriesContainer = styled.div`
   width: 80vw;
   height: 7vh;
-  background-color: "green";
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -169,13 +183,18 @@ const CategoriesContainer = styled.div`
 
 const Category = styled.button`
   margin: 5px 10px;
-  padding: 5px;
-  border-radius: 30%;
+  padding: 10px;
   white-space: nowrap;
-  background-color: #dce8d1;
-  border 1px solid #dce8d1;
+  border-radius: 999px;
+  background-color: #fff;
+  border: none;
+  text-align: left;
+  font: normal normal normal 14px/18px Strawford;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
   @media only screen and (max-width: 400px) {
-    font-size:10px;
+    font-size: 10px;
   }
 `;
 
@@ -184,19 +203,21 @@ const ProductsContainer = styled.div`
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   @media only screen and (max-width: 900px) {
     width: 90vw;
   }
   @media only screen and (max-width: 400px) {
     width: 100vw;
+    justify-content: center;
   }
 `;
 
 const Product = styled.div`
   width: 200px;
-  height: 300px;
-  padding: 3px;
-  margin: 5px;
+  height: 288px;
+  text-align: left;
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 900px) {
@@ -209,9 +230,27 @@ const Product = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 20px;
+  width: 147px;
+  height: 21px;
+  margin-right: 5px;
+  font: normal normal bold 18px/21px Strawford;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
+`;
+
+const SettingsIcon = styled.div`
+  width: 25px;
+  height: 25px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 999px;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media only screen and (max-width: 400px) {
-    font-size: 12px;
+    width: 15px;
+    height: 15px;
   }
 `;
 
@@ -255,14 +294,14 @@ const Home1 = () => {
       <Container>
         <HeaderContainer>
           <LeftHeaderContainer>
-            <Name>amandeepsaini_cCzAq</Name>
+            <Name>kinjalkhant_cCzAq</Name>
             <SettingsIcon>
-              <Gear size={20} />
+              <Gear size={18} />
             </SettingsIcon>
           </LeftHeaderContainer>
           <RightHeaderContainer>
             <Avatar>
-              <AvatarLabel>A</AvatarLabel>
+              <AvatarLabel>K</AvatarLabel>
             </Avatar>
           </RightHeaderContainer>
         </HeaderContainer>
@@ -276,24 +315,25 @@ const Home1 = () => {
       </HomeLinks>
       <SearchContainer>
         <FilterButton
-          onClick={() => {
+          onClick={e => {
             setShowCategories(!showCategories);
           }}
         >
           {showCategories ? (
-            <X
-              style={{ position: "relative", top: 3, marginRight: "3px" }}
-              size={15}
-            />
+            <X style={{ position: "relative", marginRight: "5px" }} size={17} />
           ) : (
             <FunnelSimple
-              style={{ position: "relative", top: 3, marginRight: "3px" }}
-              size={15}
+              style={{ position: "relative", marginRight: "5px" }}
+              size={17}
             />
           )}
           Filter
         </FilterButton>
-        <SearchField placeholder="Search Products" />
+        <SearchInputContainer>
+          <SearchField placeholder="Search Products" />
+          <MagnifyingGlass size={28} />
+        </SearchInputContainer>
+
         <SelectInput>
           <option>Newest</option>
         </SelectInput>
@@ -301,7 +341,11 @@ const Home1 = () => {
       <Categories>
         {showCategories ? (
           <CategoriesContainer>
-            <Category>All Categories</Category>
+            <Category
+              style={{ background: "#F2F4F4 0% 0% no-repeat padding-box" }}
+            >
+              All Categories
+            </Category>
             <Category>Living room</Category>
             <Category>Kitchen</Category>
             <Category>Bathroom</Category>
@@ -320,15 +364,41 @@ const Home1 = () => {
         )}
       </Categories>
       <ProductsContainer>
-        <Product
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <AddProdButton onClick={handleShow}>Add Products</AddProdButton>
-          <p style={{ position: "relative", top: 55, whiteSpace: "nowrap" }}>
+        <Product>
+          <div
+            style={{
+              width: "100%",
+              height: "70%",
+              padding: "10px",
+              border: "1px solid #EEEEEE"
+            }}
+          >
+            <div
+              style={{
+                background: "#F2F4F4 0% 0% no-repeat padding-box",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "left"
+              }}
+            >
+              <AddProdButton onClick={handleShow}>
+                <Plus size={20} style={{ marginRight: "4px" }} />
+                Add Products
+              </AddProdButton>
+            </div>
+          </div>
+          <p
+            style={{
+              whiteSpace: "nowrap",
+              width: "210px",
+              height: "19px",
+              font: "normal normal medium 16px/19px Strawford",
+              color: "#3A3A3A"
+            }}
+          >
             Select products from catalog
           </p>
         </Product>
@@ -344,9 +414,11 @@ const Home1 = () => {
                 src={prod.img}
                 alt="Some Image"
               />
-              <p style={{ height: "10px" }}>Brand name</p>
-              <p style={{ height: "10px" }}>{prod.name}</p>
-              <p style={{ color: "#2D5E54", height: "10px" }}>
+              <p style={{ height: "4px", color: "#3A3A3A", opacity: 0.7 }}>
+                Brand name
+              </p>
+              <p style={{ height: "4px", color: "3A3A3A" }}>{prod.name}</p>
+              <p style={{ color: "#23574C", height: "4px" }}>
                 ${prod.price}SEK
               </p>
             </Product>
@@ -361,7 +433,7 @@ const Home1 = () => {
           <ProductCatalog />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="light" onClick={handleClose}>
             Cancel
           </Button>
           <Button variant="success" onClick={handleClose}>

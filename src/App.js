@@ -2,21 +2,21 @@ import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Header1 from "./components/Header1";
-import Footer1 from "./components/Footer1";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-import Home1 from "./components/Home1";
+import Home from "./components/pages/Home";
 
 import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <Header1 />
+      <Header />
       <Routes>
-        <Route path="/" element={<Home1 />} />
+        <Route path="/" element={<Home />} />
       </Routes>
-      <Footer1 />
+      <Footer />
     </>
   );
 };

@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { ShoppingCart, List } from "phosphor-react";
 
 const Header = styled.div`
-  height: 8vh;
+  height: 10vh;
   position: fixed;
   width: 100vw;
   background-color: #fff;
   display: flex;
+  z-index: 10;
   justify-content: center;
   box-shadow: 0 8px 6px -8px black;
 `;
@@ -53,27 +54,34 @@ const RightHeader = styled.div`
 `;
 
 const BrandName = styled.div`
+  width: 32px;
+  height: 36px;
   font-size: 30px;
   color: #2d5e54;
-  margin-right: 30px;
+  margin-right: 40px;
+  background: url("/assets/es_logo_black 1.jpg") 0% 0% no-repeat padding-box;
+  opacity: 1;
   @media only screen and (max-width: 400px) {
     margin-right: 0px;
   }
 `;
 
 const Link = styled.div`
-  font-size: 17px;
-  margin-right: 6px;
-  color: #b5a8a8;
+  width: 55px;
+  height: 19px;
+  margin-right: 8px;
+  color: #3a3a3a;
+  opacity: 0.5;
+  cursor: pointer;
   @media only screen and (max-width: 400px) {
     display: none;
   }
 `;
 
 const ShoppingCartIcon = styled.div`
-  width: 25px;
-  height: 25px;
-  background-color: #f1e0cd;
+  width: 38px;
+  height: 38px;
+  background: #f1e0cd 0% 0% no-repeat padding-box;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -83,8 +91,8 @@ const ShoppingCartIcon = styled.div`
 `;
 
 const MenuIcon = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 38px;
+  height: 38px;
   background-color: #fff;
   border-radius: 100%;
   display: flex;
@@ -95,8 +103,10 @@ const MenuIcon = styled.div`
 `;
 
 const CreatPostButton = styled.button`
-  width: 110px;
+  width: 117px;
   border: none;
+  height: 35px;
+  text-align: center;
   cursor: pointer;
   background-color: #3a3a3a;
   color: #fff;
@@ -114,7 +124,7 @@ const Header1 = () => {
     <Header>
       <HeaderContainer>
         <LeftHeader>
-          <BrandName>Es</BrandName>
+          <BrandName></BrandName>
           <Link>Explore</Link>
           <Link>Guides</Link>
           <Link>Shop</Link>
@@ -122,7 +132,7 @@ const Header1 = () => {
         </LeftHeader>
         <RightHeader>
           <ShoppingCartIcon>
-            <ShoppingCart size={16} />
+            <ShoppingCart size={18} />
           </ShoppingCartIcon>
           <MenuIcon>
             <List size={17} />
