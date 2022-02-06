@@ -93,7 +93,7 @@ const ShoppingCartIcon = styled.div`
 const MenuIcon = styled.div`
   width: 38px;
   height: 38px;
-  background-color: #fff;
+  background-color: #f2f4f4;
   border-radius: 100%;
   display: flex;
   align-items: center;

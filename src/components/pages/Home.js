@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Home.css";
 import styled from "styled-components";
 import productData from "../../data/productData.json";
 import { Gear, X, FunnelSimple, Plus, MagnifyingGlass } from "phosphor-react";
@@ -36,6 +37,8 @@ const LeftHeaderContainer = styled.div`
   margin: 30px 0px;
   width: 40vw;
   display: flex;
+  align-items: "center";
+
   @media only screen and (max-width: 400px) {
     width: 60vw;
   }
@@ -52,7 +55,7 @@ const RightHeaderContainer = styled.div`
 
 const HomeLinks = styled.div`
   width: 80vw;
-  height: 10vh;
+  height: 7vh;
   display: flex;
   align-items: center;
   @media only screen and (max-width: 900px) {
@@ -64,7 +67,7 @@ const HomeLinks = styled.div`
 `;
 
 const Links = styled.div`
-  margin: 10px;
+  margin-right: 15px;
   cursor: pointer;
   text-align: left;
   font: normal normal medium 16px/19px Strawford;
@@ -86,9 +89,9 @@ const SearchContainer = styled.div`
 `;
 
 const FilterButton = styled.button`
-  width: 112px;
-  height: 46px;
-  margin: 2px;
+  width: 130px;
+  height: 42px;
+  margin-right: 18px;
   cursor: pointer;
   background: #3a3a3a 0% 0% no-repeat padding-box;
   border-radius: 4px;
@@ -113,12 +116,12 @@ const AddProdButton = styled.button`
 
 const SearchInputContainer = styled.div`
   width: 1055px;
-  height: 46px;
+  height: 42px;
   background: #ffffff;
   border: 1px solid #eeeeee;
   border-radius: 2px;
   opacity: 1;
-  margin: 0 5px;
+  margin-right: 18px;
 
   display: flex;
   align-items: center;
@@ -133,16 +136,20 @@ const SearchField = styled.input`
   border: none;
   opacity: 1;
   margin: 0 5px;
-  padding-left: 5px;
+  padding-left: 13px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const SelectInput = styled.select`
   width: 288px;
-  height: 46px;
+  height: 42px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #d1d5db;
   border-radius: 2px;
   opacity: 1;
+  padding-left: 10px;
   @media only screen and (max-width: 400px) {
     width: 25%;
   }
@@ -182,7 +189,7 @@ const CategoriesContainer = styled.div`
 `;
 
 const Category = styled.button`
-  margin: 5px 10px;
+  margin: 5px 10px 5px 0px;
   padding: 10px;
   white-space: nowrap;
   border-radius: 999px;
@@ -203,7 +210,10 @@ const ProductsContainer = styled.div`
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-content: stretch;
+  column-gap: 36px;
+  row-gap: 7px;
   @media only screen and (max-width: 900px) {
     width: 90vw;
   }
@@ -217,9 +227,9 @@ const Product = styled.div`
   width: 200px;
   height: 288px;
   text-align: left;
-  margin-left: 15px;
   display: flex;
   flex-direction: column;
+  row-gap: 5px;
   @media only screen and (max-width: 900px) {
     width: 240px;
     margin: 2px;
@@ -232,7 +242,7 @@ const Product = styled.div`
 const Name = styled.div`
   width: 147px;
   height: 21px;
-  margin-right: 5px;
+  margin-right: 12px;
   font: normal normal bold 18px/21px Strawford;
   letter-spacing: 0px;
   color: #3a3a3a;
@@ -240,8 +250,8 @@ const Name = styled.div`
 `;
 
 const SettingsIcon = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 999px;
   opacity: 1;
@@ -288,7 +298,7 @@ const Home1 = () => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <Container>
@@ -296,7 +306,7 @@ const Home1 = () => {
           <LeftHeaderContainer>
             <Name>kinjalkhant_cCzAq</Name>
             <SettingsIcon>
-              <Gear size={18} />
+              <Gear size={15} />
             </SettingsIcon>
           </LeftHeaderContainer>
           <RightHeaderContainer>
@@ -311,21 +321,21 @@ const Home1 = () => {
         <Links>Guides</Links>
         <Links>Collections</Links>
         <Links>Drafts</Links>
-        <Links>MyStore</Links>
+        <Links style={{ opacity: "1" }}>MyStore</Links>
       </HomeLinks>
+      <hr
+        style={{ width: "80%", backgroundColor: "#3A3A3A", opacity: "0.1" }}
+      />
       <SearchContainer>
         <FilterButton
-          onClick={e => {
+          onClick={(e) => {
             setShowCategories(!showCategories);
           }}
         >
           {showCategories ? (
-            <X style={{ position: "relative", marginRight: "5px" }} size={17} />
+            <X style={{ marginRight: "8px" }} size={21} />
           ) : (
-            <FunnelSimple
-              style={{ position: "relative", marginRight: "5px" }}
-              size={17}
-            />
+            <FunnelSimple style={{ marginRight: "8px" }} size={21} />
           )}
           Filter
         </FilterButton>
@@ -358,6 +368,8 @@ const Home1 = () => {
             <Category>Art</Category>
             <Category>Modern</Category>
             <Category>Industrial</Category>
+            <Category>Kitchen</Category>
+            <Category>Bathroom</Category>
           </CategoriesContainer>
         ) : (
           ""
@@ -370,7 +382,7 @@ const Home1 = () => {
               width: "100%",
               height: "70%",
               padding: "10px",
-              border: "1px solid #EEEEEE"
+              border: "1px solid #EEEEEE",
             }}
           >
             <div
@@ -381,7 +393,7 @@ const Home1 = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                textAlign: "left"
+                textAlign: "left",
               }}
             >
               <AddProdButton onClick={handleShow}>
@@ -393,23 +405,23 @@ const Home1 = () => {
           <p
             style={{
               whiteSpace: "nowrap",
-              width: "210px",
-              height: "19px",
+              fontSize: "12px",
               font: "normal normal medium 16px/19px Strawford",
-              color: "#3A3A3A"
+              color: "#3A3A3A",
+              marginTop: "4px",
             }}
           >
             Select products from catalog
           </p>
         </Product>
 
-        {productData.map(prod => {
+        {productData.map((prod) => {
           return (
             <Product>
               <img
                 style={{
                   width: "100%",
-                  height: "70%"
+                  height: "70%",
                 }}
                 src={prod.img}
                 alt="Some Image"
@@ -425,7 +437,7 @@ const Home1 = () => {
           );
         })}
       </ProductsContainer>
-      <Modal size="lg" show={showModal} onHide={handleClose}>
+      <Modal dialogClassName="modal-80w" show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Product Catalog</Modal.Title>
         </Modal.Header>

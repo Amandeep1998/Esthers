@@ -15,9 +15,9 @@ const SearchContainer = styled.div`
 `;
 
 const FilterButton = styled.button`
-  width: 160px;
-  height: 46px;
-  margin: 2px;
+  width: 130px;
+  height: 42px;
+  margin-right: 18px;
   cursor: pointer;
   background: #3a3a3a 0% 0% no-repeat padding-box;
   border-radius: 4px;
@@ -32,12 +32,13 @@ const FilterButton = styled.button`
 
 const SearchInputContainer = styled.div`
   width: 1055px;
-  height: 46px;
+  height: 42px;
   background: #ffffff;
   border: 1px solid #eeeeee;
   border-radius: 2px;
   opacity: 1;
-  margin: 0 5px;
+  margin-right: 18px;
+
   display: flex;
 
   align-items: center;
@@ -49,15 +50,19 @@ const SearchInputContainer = styled.div`
 const SearchField = styled.input`
   width: 100%;
   height: 100%;
-  opacity: 1;
   border: none;
-
-  padding: 2px;
+  opacity: 1;
+  margin: 0 5px;
+  padding-left: 13px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const SelectInput = styled.select`
   width: 288px;
-  height: 46px;
+  height: 42px;
+  padding-left: 10px;
 
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #d1d5db;
@@ -103,7 +108,8 @@ const CategoriesContainer = styled.div`
 `;
 
 const Category = styled.button`
-  margin: 5px 10px;
+  margin: 5px 10px 5px 0px;
+
   padding: 10px;
   white-space: nowrap;
   border-radius: 999px;
@@ -123,7 +129,9 @@ const ProductsContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-content: stretch;
+  column-gap: 25px;
   flex-wrap: wrap;
   @media only screen and (max-width: 900px) {
     width: 90vw;
@@ -134,10 +142,10 @@ const ProductsContainer = styled.div`
 `;
 
 const Product = styled.div`
-  width: 170px;
-  height: 250px;
-  
-  text-align: "left"
+  width: 258px;
+  height: 350px;
+
+  text-align: "left";
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 900px) {
@@ -156,7 +164,7 @@ const ProductCatalog = () => {
     <>
       <SearchContainer>
         <FilterButton
-          onClick={e => {
+          onClick={(e) => {
             setShowCategories(!showCategories);
           }}
         >
@@ -199,19 +207,21 @@ const ProductCatalog = () => {
             <Category>Art</Category>
             <Category>Modern</Category>
             <Category>Industrial</Category>
+            <Category>Kitchen</Category>
+            <Category>Bathroom</Category>
           </CategoriesContainer>
         ) : (
           ""
         )}
       </Categories>
       <ProductsContainer>
-        {productData.map(prod => {
+        {productData.map((prod) => {
           return (
             <Product>
               <img
                 style={{
                   width: "100%",
-                  height: "70%"
+                  height: "70%",
                 }}
                 src={prod.img}
                 alt="Some Image"

@@ -52,5 +52,11 @@
     "name": "xyz",
     "price": 10000,
     "img": "/assets/pic7.jpeg"
+  },
+  {
+    "id": 10,
+    "name": "xyz",
+    "price": 10000,
+    "img": "/assets/pic2.jpeg"
   }
 ]
